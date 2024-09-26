@@ -10,21 +10,23 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.skyapi.weatherforecast.common.Location;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/v1/locations")
 public class LocationApiController {
 
-	private LocationService service;
+	private LocationService locationService;
 
-	public LocationApiController(LocationService service) {
+	public LocationApiController(LocationService locationService) {
 		super();
-		this.service = service;
+		this.locationService = locationService;
 	}
 	
 	@PostMapping
-	public ResponseEntity<Location> addLocation(@RequestBody Location location){
-		Location addedLocation = service.addLocation(location);
-		URI uri = URI.create("/v1/locations/" + location.getCode());
+	public ResponseEntity<Location> addLocation(@RequestBody @Valid Location location){
+		Location addedLocation = locationService.add(location);
+		URI uri = URI.create("/v1/locations/" + addedLocation.getCode());
 		
 		return ResponseEntity.created(uri).body(addedLocation);
 	}

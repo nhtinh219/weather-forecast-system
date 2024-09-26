@@ -14,7 +14,7 @@ public class LocationService {
 		this.repository = repository;
 	}
 	
-	public Location addLocation(Location location) {
+	public Location add(Location location) {
 		return repository.save(location);
 	}
 	
