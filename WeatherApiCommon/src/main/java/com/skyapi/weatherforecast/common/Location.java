@@ -13,7 +13,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "locations")
+@Table(name = "location")
 public class Location {
 	
 	@Id
@@ -117,6 +117,12 @@ public class Location {
 			return false;
 		Location other = (Location) obj;
 		return Objects.equals(code, other.code);
+	}
+
+	@Override
+	public String toString() {
+		return "Location [code=" + code + ", cityName=" + cityName + ", regionName=" + regionName + ", countryName="
+				+ countryName + ", countryCode=" + countryCode + ", enabled=" + enabled + ", trashed=" + trashed + "]";
 	}
 	
 	
